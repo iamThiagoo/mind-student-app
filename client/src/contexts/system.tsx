@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 type System = {
-
+  theme: 'light' | 'dark';
 } | null;
 
 type SystemContextType = {
