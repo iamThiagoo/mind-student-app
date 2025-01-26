@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Calendar,
   Clock,
@@ -12,35 +12,51 @@ import {
   LineChart,
   Target,
   Upload,
-} from "lucide-react"
-import Image from "next/image"
-import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button"
-import { WordRotate } from "@/components/ui/word-rotate"
-import { ThemeToggle } from "@/components/app/theme-toggle/theme-toggle"
+} from "lucide-react";
+import Image from "next/image";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { WordRotate } from "@/components/ui/word-rotate";
+import { ThemeToggle } from "@/components/app/theme-toggle/theme-toggle";
+import { LoginDialog } from "@/components/app/auth/dialog/login-dialog";
+import { RegisterDialog } from "@/components/app/auth/dialog/register-dialog";
+import { LanguageSelector } from "@/components/app/language-selector/language-selector";
+import { MenuSidebar } from "@/components/app/menu-sidebar/menu-sidebar";
+import { useTranslations } from "next-intl";
+import { FAQ } from "@/components/app/faq/faq";
 
 export default function Page() {
+  const t = useTranslations("HomePage");
+
+  const languages = [
+    { value: "pt-br", label: "Português" },
+    { value: "en", label: "English" },
+    { value: "es", label: "Spanish" },
+  ]
+
   return (
-    <div className="flex min-h-screen flex-col pt-2 pb-5 dark:bg-gray-900">
-      <header className="px-4 lg:px-6 h-16 flex items-center justify-between border-b container mx-auto dark:border-gray-700">
-        <Link href="/" className="flex items-center justify-center gap-2">
-          <Image
-            alt="Robô"
-            width={40}
-            height={100}
-            src="/robot.svg"
-            className="mx-auto justify-center items-center mb-2 hidden sm:flex"
-          />
-          <span className="font-bold text-2xl dark:text-white">StudyBuddy</span>
-        </Link>
-        <div className="flex gap-x-3 sm:gap-x-5 justify-center items-center">
+    <div className="flex min-h-screen flex-col pt-2 pb-5">
+      <header className="px-4 lg:px-6 h-16 flex items-center justify-between border-b container mx-auto pb-2 dark:border-gray-700">
+        <div className="flex items-center justify-between w-full md:w-auto">
+          <Link
+            href="/"
+            className="flex items-center justify-center gap-2 ml-2 md:ml-0"
+          >
+            <span className="font-bold text-2xl dark:text-white">
+              MindStudent
+            </span>
+          </Link>
+          <MenuSidebar languages={languages} />
+        </div>
+        <div className="hidden md:flex gap-x-3 sm:gap-x-5 justify-center items-center">
+          <LanguageSelector items={languages} />
           <ThemeToggle />
-          <Link href="/" className="dark:text-white">Entrar</Link>
-          <Button className="dark:border dark:border-gray-400">Registre-se</Button>
+          <LoginDialog />
+          <RegisterDialog />
         </div>
       </header>
 
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-12 flex justify-center">
+        <section className="w-full py-12 md:py-24 lg:py-36 xl:pt-24 flex justify-center">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 pt-16 text-center">
               <div className="space-y-2">
@@ -55,21 +71,22 @@ export default function Page() {
                   <WordRotate
                     className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-6xl lg:text-7xl/none"
                     words={[
-                      "Aprimore Seus Estudos com o Buddy.",
-                      "Estude de forma mais eficiente e produtiva.",
-                      "Ajudamos a focar no importante.",
-                      "Maximize e Evolua...",
+                      t("main.title.studiesWithAprendiz"),
+                      t("main.title.studyMoreProductively"),
+                      t("main.title.focusOnWhatMatters"),
+                      t("main.title.maximizeEvolve"),
                     ]}
                     duration={4000}
                   />
                 </h1>
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                  Transforme sua jornada de aprendizado com ferramentas de estudo poderosas e acompanhamento
-                  produtividade. Seu caminho para a excelência acadêmica começa aqui.
+                  {t("main.description")}
                 </p>
               </div>
               <div className="space-x-4">
-                <InteractiveHoverButton>Inicie sua jornada agora</InteractiveHoverButton>
+                <InteractiveHoverButton>
+                  {t("main.startJorney")}
+                </InteractiveHoverButton>
               </div>
             </div>
           </div>
@@ -81,9 +98,11 @@ export default function Page() {
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
                   <LineChart className="h-12 w-12 text-primary" />
-                  <h3 className="text-xl font-bold dark:text-gray-100">Análise de Estudos</h3>
+                  <h3 className="text-xl font-bold dark:text-gray-100">
+                    {t("features.studyAnalysis.title")}
+                  </h3>
                   <p className="text-center text-gray-500 dark:text-gray-400">
-                    Acompanhe seu progresso com análises detalhadas e insights sobre seus padrões de estudo.
+                    {t("features.studyAnalysis.description")}
                   </p>
                 </CardContent>
               </Card>
@@ -91,9 +110,11 @@ export default function Page() {
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
                   <Library className="h-12 w-12 text-primary" />
-                  <h3 className="text-xl font-bold dark:text-gray-100">Biblioteca Digital</h3>
+                  <h3 className="text-xl font-bold dark:text-gray-100">
+                    {t("features.library.title")}
+                  </h3>
                   <p className="text-center text-gray-500 dark:text-gray-400">
-                    Acesse uma vasta coleção de livros e materiais de estudo ao seu alcance.
+                    {t("features.library.description")}
                   </p>
                 </CardContent>
               </Card>
@@ -101,9 +122,11 @@ export default function Page() {
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
                   <FlashIcon className="h-12 w-12 text-primary" />
-                  <h3 className="text-xl font-bold dark:text-gray-100">Flashcards Inteligentes</h3>
+                  <h3 className="text-xl font-bold dark:text-gray-100">
+                    {t("features.flashcards.title")}
+                  </h3>
                   <p className="text-center text-gray-500 dark:text-gray-400">
-                    Crie e estude com flashcards impulsionados por IA para uma melhor retenção.
+                    {t("features.flashcards.description")}
                   </p>
                 </CardContent>
               </Card>
@@ -111,9 +134,11 @@ export default function Page() {
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
                   <Upload className="h-12 w-12 text-primary" />
-                  <h3 className="text-xl font-bold dark:text-gray-100">Upload de Arquivos</h3>
+                  <h3 className="text-xl font-bold dark:text-gray-100">
+                    {t("features.fileUpload.title")}
+                  </h3>
                   <p className="text-center text-gray-500 dark:text-gray-400">
-                    Envie e organize seus materiais de estudo em um único lugar seguro.
+                    {t("features.fileUpload.description")}
                   </p>
                 </CardContent>
               </Card>
@@ -121,9 +146,11 @@ export default function Page() {
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
                   <FileText className="h-12 w-12 text-primary" />
-                  <h3 className="text-xl font-bold dark:text-gray-100">Resumos de PDF</h3>
+                  <h3 className="text-xl font-bold dark:text-gray-100">
+                    {t("features.pdfSummaries.title")}
+                  </h3>
                   <p className="text-center text-gray-500 dark:text-gray-400">
-                    Get quick summaries of your PDF documents to save time and enhance understanding.
+                    {t("features.pdfSummaries.description")}
                   </p>
                 </CardContent>
               </Card>
@@ -131,9 +158,11 @@ export default function Page() {
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
                   <Calendar className="h-12 w-12 text-primary" />
-                  <h3 className="text-xl font-bold dark:text-gray-100">Calendário Inteligente</h3>
+                  <h3 className="text-xl font-bold dark:text-gray-100">
+                    {t("features.calendar.title")}
+                  </h3>
                   <p className="text-center text-gray-500 dark:text-gray-400">
-                    Acompanhe e crie datas importantes e prazos com nosso calendário integrado.
+                    {t("features.calendar.description")}
                   </p>
                 </CardContent>
               </Card>
@@ -141,9 +170,11 @@ export default function Page() {
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
                   <Clock className="h-12 w-12 text-primary" />
-                  <h3 className="text-xl font-bold dark:text-gray-100">Timer Multitarefa</h3>
+                  <h3 className="text-xl font-bold dark:text-gray-100">
+                    {t("features.multitaskTimer.title")}
+                  </h3>
                   <p className="text-center text-gray-500 dark:text-gray-400">
-                    Gerencie suas sessões de estudo de forma eficaz com nosso sistema de timer multitarefa.
+                    {t("features.multitaskTimer.description")}
                   </p>
                 </CardContent>
               </Card>
@@ -151,9 +182,11 @@ export default function Page() {
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
                   <Target className="h-12 w-12 text-primary" />
-                  <h3 className="text-xl font-bold dark:text-gray-100">Sua evolução</h3>
+                  <h3 className="text-xl font-bold dark:text-gray-100">
+                    {t("features.userProgress.title")}
+                  </h3>
                   <p className="text-center text-gray-500 dark:text-gray-400">
-                    Defina metas e acompanhe seu progresso com notas detalhadas e conquistas
+                    {t("features.userProgress.description")}
                   </p>
                 </CardContent>
               </Card>
@@ -161,19 +194,42 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="w-full py-12 md:py-24 lg:pb-36 flex justify-center">
+        <section className="w-full py-12 lg:pb-36 flex justify-center">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center space-y-6 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl dark:text-gray-100">
+                  {t("faq.title")}
+                </h2>
+                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400 mb-3">
+                  {t("faq.description")}
+                </p>
+              </div>
+              <div className="mt-4 md:w-10/12 md:max-w-10/12">
+                <FAQ />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="w-full py-24 pt-10 md:py-16 lg:pb-36 flex justify-center">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl dark:text-gray-100">
-                  Bora Testar e Mudar Seus Hábitos de Estudo?
+                  {t("cta.title")}
                 </h2>
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                  Descubra como melhorar sua forma de aprender e alcançar novos resultados acadêmicos.
+                  {t("cta.description")}
                 </p>
               </div>
               <div className="space-x-4">
-                <Button size="lg" className="hover:opacity-90 dark:border dark:border-gray-400">Comece Gratuitamente</Button>
+                <Button
+                  size="lg"
+                  className="hover:opacity-90 dark:border dark:border-gray-400"
+                >
+                  {t("cta.start")}
+                </Button>
               </div>
             </div>
           </div>
@@ -190,22 +246,32 @@ export default function Page() {
               src="/robot.svg"
               className="mx-auto justify-center items-center hidden sm:flex"
             />
-            <span className="font-bold text-xl dark:text-white">StudyBuddy</span>
+            <span className="font-bold text-xl dark:text-white">
+              {t("appName")}
+            </span>
           </div>
           <nav className="flex gap-4 sm:gap-6">
-            <Link className="text-sm hover:underline underline-offset-4 dark:text-gray-50" href="#">
-              Termos de Serviço
+            <Link
+              className="text-sm hover:underline underline-offset-4 dark:text-gray-50"
+              href="#"
+            >
+              {t("footer.terms")}
             </Link>
-            <Link className="text-sm hover:underline underline-offset-4 dark:text-gray-50" href="#">
-              Política de Privacidade
+            <Link
+              className="text-sm hover:underline underline-offset-4 dark:text-gray-50"
+              href="#"
+            >
+              {t("footer.privacy")}
             </Link>
           </nav>
           <div className="flex items-center gap-4 mt-4 md:mt-0">
-            <p className="text-sm hidden sm:block dark:text-white">Me siga:</p>
+            <p className="text-sm hidden sm:block dark:text-white">
+              {t("footer.follow")}
+            </p>
             <Link
-              href="https://github.com/iamThiagoo"
+              href="https://www.linkedin.com/in/imthiagoferreira/"
               target="_blank"
-              className="text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary"
+              className="text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary hover:opacity-50"
             >
               <svg
                 width="33px"
@@ -217,15 +283,16 @@ export default function Page() {
               >
                 <path
                   d="M18.72 3.99997H5.37C5.19793 3.99191 5.02595 4.01786 4.86392 4.07635C4.70189 4.13484 4.55299 4.22471 4.42573 4.34081C4.29848 4.45692 4.19537 4.59699 4.12232 4.75299C4.04927 4.909 4.0077 5.07788 4 5.24997V18.63C4.01008 18.9901 4.15766 19.3328 4.41243 19.5875C4.6672 19.8423 5.00984 19.9899 5.37 20H18.72C19.0701 19.9844 19.4002 19.8322 19.6395 19.5761C19.8788 19.32 20.0082 18.9804 20 18.63V5.24997C20.0029 5.08247 19.9715 4.91616 19.9078 4.76122C19.8441 4.60629 19.7494 4.466 19.6295 4.34895C19.5097 4.23191 19.3672 4.14059 19.2108 4.08058C19.0544 4.02057 18.8874 3.99314 18.72 3.99997ZM9 17.34H6.67V10.21H9V17.34ZM7.89 9.12997C7.72741 9.13564 7.5654 9.10762 7.41416 9.04768C7.26291 8.98774 7.12569 8.89717 7.01113 8.78166C6.89656 8.66615 6.80711 8.5282 6.74841 8.37647C6.6897 8.22474 6.66301 8.06251 6.67 7.89997C6.66281 7.73567 6.69004 7.57169 6.74995 7.41854C6.80986 7.26538 6.90112 7.12644 7.01787 7.01063C7.13463 6.89481 7.2743 6.80468 7.42793 6.74602C7.58157 6.68735 7.74577 6.66145 7.91 6.66997C8.07259 6.66431 8.2346 6.69232 8.38584 6.75226C8.53709 6.8122 8.67431 6.90277 8.78887 7.01828C8.90344 7.13379 8.99289 7.27174 9.05159 7.42347C9.1103 7.5752 9.13699 7.73743 9.13 7.89997C9.13719 8.06427 9.10996 8.22825 9.05005 8.3814C8.99014 8.53456 8.89888 8.6735 8.78213 8.78931C8.66537 8.90513 8.5257 8.99526 8.37207 9.05392C8.21843 9.11259 8.05423 9.13849 7.89 9.12997ZM17.34 17.34H15V13.44C15 12.51 14.67 11.87 13.84 11.87C13.5822 11.8722 13.3313 11.9541 13.1219 12.1045C12.9124 12.2549 12.7546 12.4664 12.67 12.71C12.605 12.8926 12.5778 13.0865 12.59 13.28V17.34H10.29V10.21H12.59V11.21C12.7945 10.8343 13.0988 10.5225 13.4694 10.3089C13.84 10.0954 14.2624 9.98848 14.69 9.99997C16.2 9.99997 17.34 11 17.34 13.13V17.34Z"
-                  fill="#000000" className="dark:fill-white"
+                  fill="#000000"
+                  className="dark:fill-white"
                 />
               </svg>
-              <span className="sr-only">Github</span>
+              <span className="sr-only">Linkedin</span>
             </Link>
             <Link
               href="https://github.com/iamThiagoo"
               target="_blank"
-              className="text-gray-500 hover:text-primary dark:hover:text-primary dark:text-white"
+              className="text-gray-500 hover:text-primary dark:hover:text-primary dark:text-white hover:opacity-50"
             >
               <svg
                 width="24px"
@@ -247,10 +314,11 @@ export default function Page() {
         </div>
         <div className="container px-4 md:px-6 mt-6 text-center">
           <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-            © {new Date().getFullYear()} StudyBuddy - Todos os Direitos Reservados.
+            © {new Date().getFullYear()} {t("appName")} -{" "}
+            {t("footer.allRightsReserved")}
           </p>
         </div>
       </footer>
     </div>
-  )
+  );
 }

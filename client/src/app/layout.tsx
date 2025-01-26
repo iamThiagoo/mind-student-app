@@ -1,34 +1,38 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import { Raleway } from "next/font/google";
 import { SystemProvider } from "@/contexts/system";
+import {NextIntlClientProvider} from 'next-intl';
+import {getLocale, getMessages} from 'next-intl/server';
+import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
+const font = Raleway({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "StudyBuddy",
+  title: "MindStudent",
   description: `
     Plataforma de aprendizado focada em otimizar a jornada acadêmica dos usuários, oferecendo uma série de ferramentas que potencializam os estudos. 
-    Com funcionalidades como análise de progresso, biblioteca digital, flashcards inteligentes e um sistema de gerenciamento de arquivos, o StudyBuddy ajuda os estudantes a se organizarem e aumentarem sua produtividade.
+    Com funcionalidades como análise de progresso, biblioteca digital, flashcards inteligentes e um sistema de gerenciamento de arquivos, o MindStudent ajuda os estudantes a se organizarem e aumentarem sua produtividade.
   `,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
-        className={`${inter.variable} antialiased dark:bg-slate-950`}
+        className={`${font.className} antialiased dark:bg-slate-950`}
       >
-        <SystemProvider>
-          {children}
-        </SystemProvider>
+        <NextIntlClientProvider messages={messages}>
+          <SystemProvider>
+            {children}
+          </SystemProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

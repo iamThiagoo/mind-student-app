@@ -1,0 +1,98 @@
+{
+  "HomePage": {
+    "appName": "MindStudent",
+    "main": {
+      "title": {
+        "studiesWithAprendiz": "Mejora tus estudios con Aprendiz.",
+        "studyMoreProductively": "Estudia de manera más productiva.",
+        "focusOnWhatMatters": "Te ayudamos a enfocarte en lo que importa.",
+        "maximizeEvolve": "Maximiza y Evoluciona..."
+      },
+      "description": "Transforma tu viaje de aprendizaje con poderosas herramientas de estudio y seguimiento de productividad. Tu camino hacia la excelencia académica comienza aquí.",
+      "startJorney": "Comienza tu viaje ahora"
+    },
+    "features": {
+      "studyAnalysis": {
+        "title": "Análisis de Estudios",
+        "description": "Rastrea tu progreso con análisis detallados e ideas sobre tus patrones de estudio."
+      },
+      "library": {
+        "title": "Biblioteca Digital",
+        "description": "Accede a una vasta colección de libros y materiales de estudio al alcance de tu mano."
+      },
+      "flashcards": {
+        "title": "Tarjetas Inteligentes",
+        "description": "Crea y estudia con tarjetas inteligentes potenciadas por IA para una mejor retención."
+      },
+      "fileUpload": {
+        "title": "Subida de Archivos",
+        "description": "Sube y organiza tus materiales de estudio en un solo lugar seguro."
+      },
+      "pdfSummaries": {
+        "title": "Resúmenes de PDF",
+        "description": "Obtén resúmenes rápidos de tus documentos PDF para ahorrar tiempo y mejorar la comprensión."
+      },
+      "calendar": {
+        "title": "Calendario Inteligente",
+        "description": "Rastrea y crea fechas importantes y plazos con nuestro calendario integrado."
+      },
+      "multitaskTimer": {
+        "title": "Temporizador Multitarea",
+        "description": "Gestiona tus sesiones de estudio de manera efectiva con nuestro sistema de temporizador multitarea."
+      },
+      "userProgress": {
+        "title": "Tu Progreso",
+        "description": "Establece metas y sigue tu progreso con notas detalladas y logros."
+      }
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes (FAQ)",
+      "description": "Preguntas que pueden ayudarte a comprender mejor nuestra plataforma.",
+      "items": {
+        "question_1": {
+          "title": "¿Qué es MindStudent?",
+          "answer": "MindStudent es una plataforma de aprendizaje que ofrece herramientas poderosas para mejorar tus estudios y monitorear tu productividad. Nuestro objetivo es ayudarte a enfocarte en lo que importa y maximizar tu crecimiento académico."
+        },
+        "question_2": {
+          "title": "¿Cuáles son las principales características de MindStudent?",
+          "answer": "MindStudent ofrece varias funcionalidades, incluyendo: Análisis de Estudios, Biblioteca Digital, Flashcards Inteligentes, Subida de Archivos, Resúmenes de PDF, Calendario Inteligente, Temporizador Multitarea y Seguimiento de Progreso."
+        },
+        "question_3": {
+          "title": "¿Cómo puede MindStudent ayudarme a estudiar de manera más productiva?",
+          "answer": "MindStudent proporciona herramientas para ayudarte a organizar tu tiempo, materiales de estudio y monitorear tu progreso. Con funcionalidades como análisis de estudios, flashcards inteligentes y un temporizador multitarea, puedes optimizar tus sesiones de estudio y mejorar la retención de información."
+        },
+        "question_4": {
+          "title": "¿MindStudent es gratuito?",
+          "answer": "MindStudent ofrece una opción gratuita para comenzar. Puedes iniciar tu recorrido y experimentar las funcionalidades básicas de la plataforma sin costo alguno."
+        },
+        "question_5": {
+          "title": "¿Cómo puedo empezar a usar MindStudent?",
+          "answer": "Para empezar a usar MindStudent, simplemente haz clic en el botón 'Comienza Gratis' en nuestra página de inicio. Serás guiado a través del proceso de creación de cuenta y podrás comenzar a explorar las herramientas disponibles."
+        },
+        "question_6": {
+          "title": "¿MindStudent está disponible en otros idiomas además del portugués?",
+          "answer": "Sí, MindStudent está disponible en varios idiomas, incluyendo portugués, inglés y español."
+        },
+        "question_7": {
+          "title": "¿Cómo protege MindStudent mi privacidad y datos?",
+          "answer": "Tomamos tu privacidad en serio. Puedes encontrar información detallada sobre cómo protegemos tus datos en nuestra Política de Privacidad, accesible a través del enlace en el pie de página de nuestro sitio web."
+        },
+        "question_8": {
+          "title": "¿Cómo puedo contactarlos para obtener más información o soporte?",
+          "answer": "Para obtener más información o soporte, puedes seguirnos en nuestros canales de redes sociales (LinkedIn y GitHub) o ponerte en contacto a través de los canales de soporte listados en nuestro sitio web."
+        }
+      }
+    },
+    "cta": {
+      "title": "¿Listo para probar y cambiar tus hábitos de estudio?",
+      "description": "Descubre cómo mejorar tu estilo de aprendizaje y lograr nuevos resultados académicos.",
+      "start": "Comienza Gratis"
+    },
+    "footer": {
+      "follow": "Sígueme:",
+      "terms": "Términos de Servicio",
+      "privacy": "Política de Privacidad",
+      "allRightsReserved": "Todos los Derechos Reservados."
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "HomePage": {
+    "appName": "MindStudent",
+    "main": {
+      "title": {
+        "studiesWithAprendiz": "Enhance Your Studies with Aprendiz.",
+        "studyMoreProductively": "Study more productively.",
+        "focusOnWhatMatters": "We help you focus on what matters.",
+        "maximizeEvolve": "Maximize and Evolve..."
+      },
+      "description": "Transform your learning journey with powerful study tools and productivity tracking. Your path to academic excellence begins here.",
+      "startJorney": "Start your journey now"
+    },
+    "features": {
+      "studyAnalysis": {
+        "title": "Study Analysis",
+        "description": "Track your progress with detailed analyses and insights into your study patterns."
+      },
+      "library": {
+        "title": "Digital Library",
+        "description": "Access a vast collection of books and study materials at your fingertips."
+      },
+      "flashcards": {
+        "title": "Smart Flashcards",
+        "description": "Create and study with AI-powered flashcards for better retention."
+      },
+      "fileUpload": {
+        "title": "File Upload",
+        "description": "Upload and organize your study materials in one secure place."
+      },
+      "pdfSummaries": {
+        "title": "PDF Summaries",
+        "description": "Get quick summaries of your PDF documents to save time and enhance comprehension."
+      },
+      "calendar": {
+        "title": "Smart Calendar",
+        "description": "Track and create important dates and deadlines with our integrated calendar."
+      },
+      "multitaskTimer": {
+        "title": "Multitask Timer",
+        "description": "Manage your study sessions effectively with our multitask timer system."
+      },
+      "userProgress": {
+        "title": "Your Progress",
+        "description": "Set goals and track your progress with detailed notes and achievements."
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions (FAQ)",
+      "description": "Questions that can help you better understand our platform.",
+      "items": {
+        "question_1": {
+          "title": "What is MindStudent?",
+          "answer": "MindStudent is a learning platform that offers powerful tools to enhance your studies and track your productivity. Our goal is to help you focus on what matters and maximize your academic growth."
+        },
+        "question_2": {
+          "title": "What are the main features of MindStudent?",
+          "answer": "MindStudent offers various features, including: Study Analysis, Digital Library, Smart Flashcards, File Uploads, PDF Summaries, Smart Calendar, Multitasking Timer, and Progress Tracking."
+        },
+        "question_3": {
+          "title": "How can MindStudent help me study more productively?",
+          "answer": "MindStudent provides tools to help you organize your time, study materials, and track your progress. With features like study analysis, smart flashcards, and a multitasking timer, you can optimize your study sessions and improve information retention."
+        },
+        "question_4": {
+          "title": "Is MindStudent free?",
+          "answer": "MindStudent offers a free option to get started. You can begin your journey and experience the platform's basic features at no cost."
+        },
+        "question_5": {
+          "title": "How can I start using MindStudent?",
+          "answer": "To start using MindStudent, simply click the 'Start for Free' button on our homepage. You will be guided through the account creation process and can begin exploring the available tools."
+        },
+        "question_6": {
+          "title": "Is MindStudent available in languages other than Portuguese?",
+          "answer": "Yes, MindStudent is available in multiple languages, including Portuguese, English, and Spanish."
+        },
+        "question_7": {
+          "title": "How does MindStudent protect my privacy and data?",
+          "answer": "We take your privacy seriously. You can find detailed information about how we protect your data in our Privacy Policy, accessible via the link in the footer of our website."
+        },
+        "question_8": {
+          "title": "How can I contact you for more information or support?",
+          "answer": "For more information or support, you can follow us on our social media channels (LinkedIn and GitHub) or reach out through the support channels listed on our website."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Test and Change Your Study Habits?",
+      "description": "Discover how to improve your learning style and achieve new academic results.",
+      "start": "Start for Free"
+    },
+    "footer": {
+      "follow": "Follow me:",
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "allRightsReserved": "All Rights Reserved."
+    }
+  }
+}
