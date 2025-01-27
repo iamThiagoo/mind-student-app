@@ -10,7 +10,7 @@ import { FiGithub } from "react-icons/fi";
 import { FaGoogle } from "react-icons/fa";
 import { ImSpinner2 } from "react-icons/im";
 
-export function LoginForm({
+export function RegisterForm({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
@@ -27,19 +27,33 @@ export function LoginForm({
 
   return (
     <div className={cn("grid gap-5", className)} {...props}>
-      <h2 className="text-center font-bold text-2xl">Criar uma conta</h2>
+      <h2 className="text-center font-bold text-2xl">Registre-se</h2>
       <p className="text-medium text-sm mt-0 text-center text-gray-700">
-        Entre com seu email e senha ou use uma das opções abaixo
+        Registre-se com seu email e senha ou use uma das opções abaixo
       </p>
       <form onSubmit={onSubmit}>
         <div className="grid gap-4">
+        <div className="grid gap-1">
+            <Label className="sr-only" htmlFor="fullname">
+              Nome Completo
+            </Label>
+            <Input
+              id="fullname"
+              placeholder="Nome Completo"
+              type="text"
+              autoCapitalize="none"
+              autoComplete="fullname"
+              autoCorrect="off"
+              disabled={isLoading}
+            />
+          </div>
           <div className="grid gap-1">
             <Label className="sr-only" htmlFor="email">
               Email
             </Label>
             <Input
               id="email"
-              placeholder="nome@exemplo.com"
+              placeholder="Email"
               type="email"
               autoCapitalize="none"
               autoComplete="email"
@@ -63,14 +77,14 @@ export function LoginForm({
           </div>
           <Button className="py-5 border" disabled={isLoading}>
             {isLoading && <ImSpinner2 className="mr-2 h-4 w-4 animate-spin" />}
-            Entrar
+            Criar Conta
           </Button>
           <Button
             variant={"ghost"}
             className="py-5 border border-gray-300"
             disabled={isLoading}
           >
-            Registre-se
+            Já possui conta? {" "} Entrar
           </Button>
         </div>
       </form>

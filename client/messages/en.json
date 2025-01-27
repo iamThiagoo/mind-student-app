@@ -1,6 +1,7 @@
 {
   "HomePage": {
     "appName": "MindStudent",
+    "login": "Login",
     "main": {
       "title": {
         "studiesWithAprendiz": "Enhance Your Studies with Aprendiz.",

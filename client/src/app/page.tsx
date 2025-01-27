@@ -13,39 +13,44 @@ import {
   Target,
   Upload,
 } from "lucide-react";
-import Image from "next/image";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { WordRotate } from "@/components/ui/word-rotate";
 import { ThemeToggle } from "@/components/app/theme-toggle/theme-toggle";
 import { LoginDialog } from "@/components/app/auth/dialog/login-dialog";
 import { RegisterDialog } from "@/components/app/auth/dialog/register-dialog";
 import { LanguageSelector } from "@/components/app/language-selector/language-selector";
-import { MenuSidebar } from "@/components/app/menu-sidebar/menu-sidebar";
+import { MenuDropdown } from "@/components/app/menu-dropdown/menu-dropdown";
 import { useTranslations } from "next-intl";
 import { FAQ } from "@/components/app/faq/faq";
+import StudentAnimation from "@/components/app/animation/student";
+import { FcGraduationCap } from "react-icons/fc";
+import { useState } from "react";
 
 export default function Page() {
-  const t = useTranslations("HomePage");
 
+  const [, setRegisterDialogOpen] = useState(false);
+  const t = useTranslations("HomePage");
   const languages = [
     { value: "pt-br", label: "Português" },
     { value: "en", label: "English" },
     { value: "es", label: "Spanish" },
-  ]
+  ];
+
 
   return (
     <div className="flex min-h-screen flex-col pt-2 pb-5">
-      <header className="px-4 lg:px-6 h-16 flex items-center justify-between border-b container mx-auto pb-2 dark:border-gray-700">
+      <header className="px-2 lg:px-6 h-16 flex items-center justify-between border-b container mx-auto pb-2 dark:border-gray-700">
         <div className="flex items-center justify-between w-full md:w-auto">
           <Link
             href="/"
             className="flex items-center justify-center gap-2 ml-2 md:ml-0"
           >
-            <span className="font-bold text-2xl dark:text-white">
-              MindStudent
+            <span className="font-bold text-2xl dark:text-white items-center flex gap-x-2">
+              <FcGraduationCap className="size-10" />
+              <span className="mt-1">{t("appName")}</span>
             </span>
           </Link>
-          <MenuSidebar languages={languages} />
+          <MenuDropdown languages={languages} />
         </div>
         <div className="hidden md:flex gap-x-3 sm:gap-x-5 justify-center items-center">
           <LanguageSelector items={languages} />
@@ -56,17 +61,11 @@ export default function Page() {
       </header>
 
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-36 xl:pt-24 flex justify-center">
+        <section className="w-full pt-12 pb-24 md:py-24 lg:py-24 xl:pt-24 flex justify-center">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 pt-16 text-center">
               <div className="space-y-2">
-                <Image
-                  alt="Robô"
-                  width={100}
-                  height={120}
-                  src="/robot.svg"
-                  className="mx-auto flex justify-center mb-5"
-                />
+                <StudentAnimation />
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-6xl lg:text-7xl/none dark:text-gray-100">
                   <WordRotate
                     className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-6xl lg:text-7xl/none"
@@ -227,6 +226,7 @@ export default function Page() {
                 <Button
                   size="lg"
                   className="hover:opacity-90 dark:border dark:border-gray-400"
+                  onClick={() => setRegisterDialogOpen(true)}
                 >
                   {t("cta.start")}
                 </Button>
@@ -239,14 +239,8 @@ export default function Page() {
       <footer className="w-full py-6 container mx-auto border-t dark:border-t dark:border-gray-700">
         <div className="container px-4 md:px-6 flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-2 mb-4 md:mb-0">
-            <Image
-              alt="Robô"
-              width={30}
-              height={100}
-              src="/robot.svg"
-              className="mx-auto justify-center items-center hidden sm:flex"
-            />
-            <span className="font-bold text-xl dark:text-white">
+            <FcGraduationCap className="size-10" />
+            <span className="font-bold text-xl mt-1 dark:text-white">
               {t("appName")}
             </span>
           </div>
