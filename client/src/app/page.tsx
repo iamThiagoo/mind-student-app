@@ -16,19 +16,23 @@ import {
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { WordRotate } from "@/components/ui/word-rotate";
 import { ThemeToggle } from "@/components/app/theme-toggle/theme-toggle";
-import { LoginDialog } from "@/components/app/auth/dialog/login-dialog";
-import { RegisterDialog } from "@/components/app/auth/dialog/register-dialog";
+import { LoginDialog } from "@/components/app/landing-page/auth/dialog/login-dialog";
+import { RegisterDialog } from "@/components/app/landing-page/auth/dialog/register-dialog";
 import { LanguageSelector } from "@/components/app/language-selector/language-selector";
-import { MenuDropdown } from "@/components/app/menu-dropdown/menu-dropdown";
 import { useTranslations } from "next-intl";
-import { FAQ } from "@/components/app/faq/faq";
-import StudentAnimation from "@/components/app/animation/student";
+import { FAQ } from "@/components/app/landing-page/faq/faq";
+import StudentAnimation from "@/components/app/landing-page/animation/student";
 import { FcGraduationCap } from "react-icons/fc";
 import { useState } from "react";
+import { MenuDropdown } from "@/components/app/landing-page/menu-dropdown/menu-dropdown";
 
 export default function Page() {
+  const [isOpen, setIsOpen] = useState(false);
 
-  const [, setRegisterDialogOpen] = useState(false);
+  const toggleDialog = () => {
+    setIsOpen(!isOpen);
+  };
+
   const t = useTranslations("HomePage");
   const languages = [
     { value: "pt-br", label: "Português" },
@@ -36,10 +40,9 @@ export default function Page() {
     { value: "es", label: "Spanish" },
   ];
 
-
   return (
     <div className="flex min-h-screen flex-col pt-2 pb-5">
-      <header className="px-2 lg:px-6 h-16 flex items-center justify-between border-b container mx-auto pb-2 dark:border-gray-700">
+      <header className="px-4 lg:px-6 h-16 flex items-center justify-between border-b container mx-auto pb-2 dark:border-gray-700">
         <div className="flex items-center justify-between w-full md:w-auto">
           <Link
             href="/"
@@ -61,7 +64,7 @@ export default function Page() {
       </header>
 
       <main className="flex-1">
-        <section className="w-full pt-12 pb-24 md:py-24 lg:py-24 xl:pt-24 flex justify-center">
+        <section className="w-full pt-12 pb-24 md:py-24 lg:py-24 xl:pt-20 flex justify-center">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 pt-16 text-center">
               <div className="space-y-2">
@@ -83,7 +86,7 @@ export default function Page() {
                 </p>
               </div>
               <div className="space-x-4">
-                <InteractiveHoverButton>
+                <InteractiveHoverButton onClick={toggleDialog}>
                   {t("main.startJorney")}
                 </InteractiveHoverButton>
               </div>
@@ -96,7 +99,7 @@ export default function Page() {
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <LineChart className="h-12 w-12 text-primary" />
+                  <LineChart className="h-12 w-12 text-primary dark:text-gray-500" />
                   <h3 className="text-xl font-bold dark:text-gray-100">
                     {t("features.studyAnalysis.title")}
                   </h3>
@@ -108,7 +111,7 @@ export default function Page() {
 
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <Library className="h-12 w-12 text-primary" />
+                  <Library className="h-12 w-12 text-primary dark:text-gray-500" />
                   <h3 className="text-xl font-bold dark:text-gray-100">
                     {t("features.library.title")}
                   </h3>
@@ -120,7 +123,7 @@ export default function Page() {
 
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <FlashIcon className="h-12 w-12 text-primary" />
+                  <FlashIcon className="h-12 w-12 text-primary dark:text-gray-500" />
                   <h3 className="text-xl font-bold dark:text-gray-100">
                     {t("features.flashcards.title")}
                   </h3>
@@ -132,7 +135,7 @@ export default function Page() {
 
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <Upload className="h-12 w-12 text-primary" />
+                  <Upload className="h-12 w-12 text-primary dark:text-gray-500" />
                   <h3 className="text-xl font-bold dark:text-gray-100">
                     {t("features.fileUpload.title")}
                   </h3>
@@ -144,7 +147,7 @@ export default function Page() {
 
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <FileText className="h-12 w-12 text-primary" />
+                  <FileText className="h-12 w-12 text-primary dark:text-gray-500" />
                   <h3 className="text-xl font-bold dark:text-gray-100">
                     {t("features.pdfSummaries.title")}
                   </h3>
@@ -156,7 +159,7 @@ export default function Page() {
 
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <Calendar className="h-12 w-12 text-primary" />
+                  <Calendar className="h-12 w-12 text-primary dark:text-gray-500" />
                   <h3 className="text-xl font-bold dark:text-gray-100">
                     {t("features.calendar.title")}
                   </h3>
@@ -168,7 +171,7 @@ export default function Page() {
 
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <Clock className="h-12 w-12 text-primary" />
+                  <Clock className="h-12 w-12 text-primary dark:text-gray-500" />
                   <h3 className="text-xl font-bold dark:text-gray-100">
                     {t("features.multitaskTimer.title")}
                   </h3>
@@ -180,7 +183,7 @@ export default function Page() {
 
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <Target className="h-12 w-12 text-primary" />
+                  <Target className="h-12 w-12 text-primary dark:text-gray-500" />
                   <h3 className="text-xl font-bold dark:text-gray-100">
                     {t("features.userProgress.title")}
                   </h3>
@@ -226,7 +229,6 @@ export default function Page() {
                 <Button
                   size="lg"
                   className="hover:opacity-90 dark:border dark:border-gray-400"
-                  onClick={() => setRegisterDialogOpen(true)}
                 >
                   {t("cta.start")}
                 </Button>

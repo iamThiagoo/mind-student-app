@@ -1,13 +1,13 @@
 import { Menu } from "lucide-react";
-import { ThemeToggle } from "../theme-toggle/theme-toggle";
-import { LoginDialog } from "../auth/dialog/login-dialog";
-import { RegisterDialog } from "../auth/dialog/register-dialog";
-import { LanguageSelector } from "../language-selector/language-selector";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { LoginDialog } from "../auth/dialog/login-dialog";
+import { RegisterDialog } from "../auth/dialog/register-dialog";
+import { LanguageSelector } from "../../language-selector/language-selector";
+import { ThemeToggle } from "../../theme-toggle/theme-toggle";
 
 type Props = {
   languages: Array<{ value: string; label: string }>;
