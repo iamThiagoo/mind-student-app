@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 
 export function FAQ() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
-  const t = useTranslations("HomePage");
+  const t = useTranslations("homepage");
 
   const items = [
     {

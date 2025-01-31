@@ -1,5 +1,5 @@
 {
-  "HomePage": {
+  "homepage": {
     "appName": "MindStudent",
     "login": "Login",
     "main": {
@@ -95,5 +95,28 @@
       "privacy": "Privacy Policy",
       "allRightsReserved": "All Rights Reserved."
     }
+  },
+  "login": {
+    "title": "Log in to Account",
+    "description": "Enter your email and password or use one of the options below",
+    "password": "Password",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "orContinueWith": "Or continue with"
+  },
+  "signUp": {
+    "title": "Sign Up",
+    "description": "Sign up with your email and password or use one of the options below",
+    "fullName": "Full Name",
+    "password": "Password",
+    "createAccount": "Create Account",
+    "alreadyHaveAccount": "Already have an account? Sign In",
+    "orContinueWith": "Or continue with"
+  },
+  "terms": {
+    "agreement": "By clicking continue, you agree to our",
+    "termsOfService": "Terms of Service",
+    "and": "and",
+    "privacyPolicy": "Privacy Policy"
   }
 }

@@ -47,7 +47,7 @@ export function LanguageSelector({ items } : Props) {
             className="select-none justify-between cursor-pointer dark:bg-slate-800 dark:hover:bg-slate-600 dark:text-gray-300"
           >
             <Image src={`/flags/${lang.value}.svg`} alt={lang.label} width={24} height={24} />
-            {lang.value === language?.value && <Check className="h-4 w-4" />}
+            {lang.value === language?.value && <Check className="h-5 w-5" />}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

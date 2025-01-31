@@ -6,15 +6,15 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { FiGithub } from "react-icons/fi";
-import { FaGoogle } from "react-icons/fa";
 import { ImSpinner2 } from "react-icons/im";
+import { useTranslations } from "next-intl";
 
 export function RegisterForm({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const t = useTranslations();
 
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
@@ -27,19 +27,19 @@ export function RegisterForm({
 
   return (
     <div className={cn("grid gap-5", className)} {...props}>
-      <h2 className="text-center font-bold text-2xl">Registre-se</h2>
+      <h2 className="text-center font-bold text-2xl">{t("signUp.title")}</h2>
       <p className="text-medium text-sm mt-0 text-center text-gray-700">
-        Registre-se com seu email e senha ou use uma das opções abaixo
+        {t("signUp.description")}
       </p>
       <form onSubmit={onSubmit}>
         <div className="grid gap-4">
         <div className="grid gap-1">
             <Label className="sr-only" htmlFor="fullname">
-              Nome Completo
+              {t("signUp.fullName")}
             </Label>
             <Input
               id="fullname"
-              placeholder="Nome Completo"
+              placeholder={t("signUp.fullName")}
               type="text"
               autoCapitalize="none"
               autoComplete="fullname"
@@ -63,11 +63,11 @@ export function RegisterForm({
           </div>
           <div className="grid gap-1">
             <Label className="sr-only" htmlFor="password">
-              Senha
+              {t("signUp.password")}
             </Label>
             <Input
               id="password"
-              placeholder="Senha"
+              placeholder={t("signUp.password")}
               type="password"
               autoCapitalize="none"
               autoComplete="current-password"
@@ -77,45 +77,10 @@ export function RegisterForm({
           </div>
           <Button className="py-5 border" disabled={isLoading}>
             {isLoading && <ImSpinner2 className="mr-2 h-4 w-4 animate-spin" />}
-            Criar Conta
-          </Button>
-          <Button
-            variant={"ghost"}
-            className="py-5 border border-gray-300"
-            disabled={isLoading}
-          >
-            Já possui conta? {" "} Entrar
+            {t('signUp.createAccount')}
           </Button>
         </div>
       </form>
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t" />
-        </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">
-            Ou continue com
-          </span>
-        </div>
-      </div>
-      <div className="grid grid-cols-2 gap-6">
-        <Button variant="outline" type="button" disabled={isLoading}>
-          {isLoading ? (
-            <ImSpinner2 className="mr-2 h-4 w-4 animate-spin" />
-          ) : (
-            <FaGoogle className="mr-2 h-4 w-4" />
-          )}{" "}
-          Google
-        </Button>
-        <Button variant="outline" type="button" disabled={isLoading}>
-          {isLoading ? (
-            <ImSpinner2 className="mr-2 h-4 w-4 animate-spin" />
-          ) : (
-            <FiGithub className="mr-2 h-4 w-4" />
-          )}{" "}
-          GitHub
-        </Button>
-      </div>
     </div>
   );
 }

@@ -3,16 +3,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Calendar,
-  Clock,
-  FileText,
-  FlashlightIcon as FlashIcon,
-  Library,
-  LineChart,
-  Target,
-  Upload,
-} from "lucide-react";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { WordRotate } from "@/components/ui/word-rotate";
 import { ThemeToggle } from "@/components/app/theme-toggle/theme-toggle";
@@ -25,15 +15,48 @@ import StudentAnimation from "@/components/app/landing-page/animation/student";
 import { FcGraduationCap } from "react-icons/fc";
 import { useState } from "react";
 import { MenuDropdown } from "@/components/app/landing-page/menu-dropdown/menu-dropdown";
+import { TermsDialog } from "@/components/app/terms-privacy/terms-dialog";
+import { PrivacyDialog } from "@/components/app/terms-privacy/privacy-dialog";
+import { TiChevronRight } from "react-icons/ti";
+import { FaUserGraduate } from "react-icons/fa";
+import Image from "next/image";
 
 export default function Page() {
-  const [isOpen, setIsOpen] = useState(false);
+  
+  const t = useTranslations("homepage");
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
 
-  const toggleDialog = () => {
-    setIsOpen(!isOpen);
+  const toggleRegisterDialog = () => {
+    setIsRegisterOpen(!isRegisterOpen);
   };
 
-  const t = useTranslations("HomePage");
+  const toggleLoginDialog = () => {
+    setIsLoginOpen(!isLoginOpen);
+  };
+
+  const toggleTermsDialog = () => {
+    setIsTermsOpen(!isTermsOpen);
+  };
+
+  const togglePrivacyDialog = () => {
+    setIsPrivacyOpen(!isPrivacyOpen);
+  };
+
+  const handleLoginRegisterDialogEvent = (param : string) => {
+    if (param === "register") {
+      setIsRegisterOpen(true);
+      setIsLoginOpen(false);
+    }
+
+    if (param === "login") {
+      setIsRegisterOpen(false);
+      setIsLoginOpen(true);
+    }
+  }
+
   const languages = [
     { value: "pt-br", label: "Português" },
     { value: "en", label: "English" },
@@ -42,6 +65,7 @@ export default function Page() {
 
   return (
     <div className="flex min-h-screen flex-col pt-2 pb-5">
+
       <header className="px-4 lg:px-6 h-16 flex items-center justify-between border-b container mx-auto pb-2 dark:border-gray-700">
         <div className="flex items-center justify-between w-full md:w-auto">
           <Link
@@ -58,8 +82,18 @@ export default function Page() {
         <div className="hidden md:flex gap-x-3 sm:gap-x-5 justify-center items-center">
           <LanguageSelector items={languages} />
           <ThemeToggle />
-          <LoginDialog />
-          <RegisterDialog />
+          <Button
+            variant={'ghost'}
+            onClick={toggleLoginDialog}
+            className="flex dark:text-white dark:hover:bg-transparent hover:opacity-80 md:mr-3 select-none border-2 rounded-md border-gray-800 md:border-none font-bold py-10 md:py-5 !text-xl !pr-4 hover:underline"
+          >
+            <FaUserGraduate height={"2rem"} className="h-20 w-20 text-primary dark:text-gray-500" />
+            {t("login")}
+          </Button>
+          <Button onClick={toggleRegisterDialog} className="dark:border dark:border-gray-400 dark:text-white dark:bg-zinc-900 dark:hover:bg-zinc-800 select-none py-10 md:py-5 hover:underline rounded-full font-bold !text-lg !px-10">
+            Registre-se
+            <TiChevronRight />
+          </Button>
         </div>
       </header>
 
@@ -86,7 +120,7 @@ export default function Page() {
                 </p>
               </div>
               <div className="space-x-4">
-                <InteractiveHoverButton onClick={toggleDialog}>
+                <InteractiveHoverButton onClick={toggleRegisterDialog}>
                   {t("main.startJorney")}
                 </InteractiveHoverButton>
               </div>
@@ -95,11 +129,11 @@ export default function Page() {
         </section>
 
         <section className="w-full py-12 md:py-24 lg:pb-32 lg:pt-28 flex justify-center">
-          <div className="container px-4 md:px-6">
+          <div className="container px-5 md:px-6">
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <LineChart className="h-12 w-12 text-primary dark:text-gray-500" />
+                  <Image src="/icons/chart.png" width={70} height={70} alt="Study Analysis" />
                   <h3 className="text-xl font-bold dark:text-gray-100">
                     {t("features.studyAnalysis.title")}
                   </h3>
@@ -111,7 +145,7 @@ export default function Page() {
 
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <Library className="h-12 w-12 text-primary dark:text-gray-500" />
+                  <Image src="/icons/bookmark.png" width={70} height={70} alt="Library" />
                   <h3 className="text-xl font-bold dark:text-gray-100">
                     {t("features.library.title")}
                   </h3>
@@ -123,7 +157,7 @@ export default function Page() {
 
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <FlashIcon className="h-12 w-12 text-primary dark:text-gray-500" />
+                  <Image src="/icons/flash.png" width={70} height={70} alt="Flash cards" />
                   <h3 className="text-xl font-bold dark:text-gray-100">
                     {t("features.flashcards.title")}
                   </h3>
@@ -135,7 +169,7 @@ export default function Page() {
 
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <Upload className="h-12 w-12 text-primary dark:text-gray-500" />
+                  <Image src="/icons/folder.png" width={70} height={70} alt="Flash cards" />
                   <h3 className="text-xl font-bold dark:text-gray-100">
                     {t("features.fileUpload.title")}
                   </h3>
@@ -147,7 +181,7 @@ export default function Page() {
 
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <FileText className="h-12 w-12 text-primary dark:text-gray-500" />
+                  <Image src="/icons/file-text.png" width={70} height={70} alt="Flash cards" />
                   <h3 className="text-xl font-bold dark:text-gray-100">
                     {t("features.pdfSummaries.title")}
                   </h3>
@@ -159,7 +193,7 @@ export default function Page() {
 
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <Calendar className="h-12 w-12 text-primary dark:text-gray-500" />
+                  <Image src="/icons/calendar.png" width={70} height={70} alt="Calendar" />
                   <h3 className="text-xl font-bold dark:text-gray-100">
                     {t("features.calendar.title")}
                   </h3>
@@ -171,7 +205,7 @@ export default function Page() {
 
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <Clock className="h-12 w-12 text-primary dark:text-gray-500" />
+                  <Image src="/icons/clock.png" width={70} height={70} alt="Timer" />
                   <h3 className="text-xl font-bold dark:text-gray-100">
                     {t("features.multitaskTimer.title")}
                   </h3>
@@ -183,7 +217,7 @@ export default function Page() {
 
               <Card className="dark:bg-gray-800 dark:border-gray-700">
                 <CardContent className="flex flex-col items-center space-y-4 p-6">
-                  <Target className="h-12 w-12 text-primary dark:text-gray-500" />
+                  <Image src="/icons/fire.png" width={70} height={70} alt="User Progress" />
                   <h3 className="text-xl font-bold dark:text-gray-100">
                     {t("features.userProgress.title")}
                   </h3>
@@ -229,6 +263,7 @@ export default function Page() {
                 <Button
                   size="lg"
                   className="hover:opacity-90 dark:border dark:border-gray-400"
+                  onClick={toggleRegisterDialog}
                 >
                   {t("cta.start")}
                 </Button>
@@ -247,18 +282,19 @@ export default function Page() {
             </span>
           </div>
           <nav className="flex gap-4 sm:gap-6">
-            <Link
+            <button
+              type="button"
               className="text-sm hover:underline underline-offset-4 dark:text-gray-50"
-              href="#"
+              onClick={toggleTermsDialog}
             >
               {t("footer.terms")}
-            </Link>
-            <Link
+            </button>
+            <button
               className="text-sm hover:underline underline-offset-4 dark:text-gray-50"
-              href="#"
+              onClick={togglePrivacyDialog}
             >
               {t("footer.privacy")}
-            </Link>
+            </button>
           </nav>
           <div className="flex items-center gap-4 mt-4 md:mt-0">
             <p className="text-sm hidden sm:block dark:text-white">
@@ -315,6 +351,12 @@ export default function Page() {
           </p>
         </div>
       </footer>
+
+      <LoginDialog isOpen={isLoginOpen} onOpenChange={setIsLoginOpen} onChildEvent={handleLoginRegisterDialogEvent} />
+      <RegisterDialog isOpen={isRegisterOpen} onOpenChange={setIsRegisterOpen} onChildEvent={handleLoginRegisterDialogEvent} />
+
+      <TermsDialog isOpen={isTermsOpen} onOpenChange={setIsTermsOpen} />
+      <PrivacyDialog isOpen={isPrivacyOpen} onOpenChange={setIsPrivacyOpen} />
     </div>
   );
 }
