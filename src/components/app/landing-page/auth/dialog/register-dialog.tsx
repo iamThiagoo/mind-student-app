@@ -1,18 +1,30 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { RegisterForm } from "../form/register-form";
-import { DialogProps } from "@/@types/dialog";
+import { DialogProps } from "@/components/@types/dialog";
 import { useState } from "react";
-import { PrivacyDialog } from "@/components/app/terms-privacy/privacy-dialog";
-import { TermsDialog } from "@/components/app/terms-privacy/terms-dialog";
+import { PrivacyDialog } from "@/components/common/terms-privacy/privacy-dialog";
+import { TermsDialog } from "@/components/common/terms-privacy/terms-dialog";
 import { FaGoogle } from "react-icons/fa";
 import { FiGithub } from "react-icons/fi";
 import { useTranslations } from "next-intl";
+import { ImSpinner2 } from "react-icons/im";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { createClient } from '@/lib/supabase/client'
 
-export function RegisterDialog({ isOpen, onOpenChange, onChildEvent }: DialogProps) {
+export function RegisterDialog({
+  isOpen,
+  onOpenChange,
+  onChildEvent,
+}: DialogProps) {
+  const t = useTranslations();
+
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
-  const t = useTranslations();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [fullname, setFullname] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const toggleTermsDialog = () => {
     setIsTermsOpen(!isTermsOpen);
@@ -22,11 +34,94 @@ export function RegisterDialog({ isOpen, onOpenChange, onChildEvent }: DialogPro
     setIsPrivacyOpen(!isPrivacyOpen);
   };
 
+  async function onSubmit(event: React.SyntheticEvent) {
+    event.preventDefault();
+    setIsLoading(true);
+    
+    const supabase = await createClient()
+    await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          first_name: fullname.split(" ").slice(0, 1),
+          last_name: fullname.split(" ").slice(1)
+        }
+      }
+    });
+
+    setIsLoading(false);
+  }
+
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogTitle></DialogTitle>
-        <RegisterForm />
+        <div className="grid gap-5">
+          <h2 className="text-center font-bold text-2xl">
+            {t("signUp.title")}
+          </h2>
+          <p className="text-medium text-sm mt-0 text-center text-gray-700">
+            {t("signUp.description")}
+          </p>
+          <form onSubmit={onSubmit}>
+            <div className="grid gap-4">
+              <div className="grid gap-1">
+                <Label className="sr-only" htmlFor="fullname">
+                  {t("signUp.fullName")}
+                </Label>
+                <Input
+                  id="fullname"
+                  placeholder={t("signUp.fullName")}
+                  type="text"
+                  autoCapitalize="none"
+                  autoComplete="name"
+                  autoCorrect="off"
+                  value={fullname}
+                  onChange={(e) => setFullname(e.target.value)}
+                  disabled={isLoading}
+                />
+              </div>
+              <div className="grid gap-1">
+                <Label className="sr-only" htmlFor="email">
+                  Email
+                </Label>
+                <Input
+                  id="email"
+                  placeholder="Email"
+                  type="email"
+                  autoCapitalize="none"
+                  autoComplete="email"
+                  autoCorrect="off"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={isLoading}
+                />
+              </div>
+              <div className="grid gap-1">
+                <Label className="sr-only" htmlFor="password">
+                  {t("signUp.password")}
+                </Label>
+                <Input
+                  id="password"
+                  placeholder={t("signUp.password")}
+                  type="password"
+                  autoCapitalize="none"
+                  autoComplete="current-password"
+                  autoCorrect="off"
+                  onChange={(e) => setPassword(e.target.value)}
+                  disabled={isLoading}
+                />
+              </div>
+              <Button className="py-5 border" disabled={isLoading}>
+                {isLoading && (
+                  <ImSpinner2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                {t("signUp.createAccount")}
+              </Button>
+            </div>
+          </form>
+        </div>
 
         <Button
           variant={"ghost"}

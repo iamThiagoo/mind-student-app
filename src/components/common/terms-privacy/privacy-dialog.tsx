@@ -1,4 +1,4 @@
-import { DialogProps } from "@/@types/dialog";
+import { DialogProps } from "@/components/@types/dialog";
 import {
   Dialog,
   DialogContent,
@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/dialog";
 import { useTranslations } from "next-intl";
 
-export function TermsDialog({ isOpen, onOpenChange } : DialogProps) {
+export function PrivacyDialog({ isOpen, onOpenChange } : DialogProps) {
 
   const t = useTranslations("terms");
 
@@ -14,7 +14,7 @@ export function TermsDialog({ isOpen, onOpenChange } : DialogProps) {
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogTitle></DialogTitle>
-        <h2 className="text-center font-bold text-2xl">{t('termsOfService')}</h2>
+        <h2 className="text-center font-bold text-2xl">{ t("privacyPolicy") }</h2>
       </DialogContent>
     </Dialog>
   );
