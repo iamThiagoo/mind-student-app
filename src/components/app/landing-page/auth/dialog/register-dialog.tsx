@@ -11,13 +11,18 @@ import { ImSpinner2 } from "react-icons/im";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { createClient } from '@/lib/supabase/client'
+import { useToast } from "@/hooks/use-toast"
+import { useRouter } from "next/navigation";
 
 export function RegisterDialog({
   isOpen,
   onOpenChange,
   onChildEvent,
 }: DialogProps) {
+
   const t = useTranslations();
+  const { toast } = useToast();
+  const router = useRouter();
 
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
@@ -37,20 +42,45 @@ export function RegisterDialog({
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
     setIsLoading(true);
-    
-    const supabase = await createClient()
-    await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          first_name: fullname.split(" ").slice(0, 1),
-          last_name: fullname.split(" ").slice(1)
-        }
-      }
-    });
 
-    setIsLoading(false);
+    try {
+      const supabase = await createClient()
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}`,
+          data: {
+            first_name: fullname.split(" ").slice(0, 1),
+            last_name: fullname.split(" ").slice(1)
+          }
+        }
+      });
+
+      if (!!error) {
+        throw error
+      }
+
+      router.push("/workspace");
+      
+    } catch (error: any) {
+      if (error.code === "user_already_exists") {
+        toast({
+          variant: "destructive",
+          title: t("errors.emailAlreadyRegistered"),
+          description: t("errors.tryAnotherEmail"),
+        })
+      } else {
+        toast({
+          variant: "destructive",
+          title: t("errors.somethingWentWrong"),
+          description: t("errors.pleaseTryAgain"),
+        })
+      }
+    } finally {
+      setIsLoading(false);
+      return;
+    }
   }
 
   return (

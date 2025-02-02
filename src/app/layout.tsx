@@ -4,6 +4,7 @@ import { SystemProvider } from "@/contexts/system";
 import {NextIntlClientProvider} from 'next-intl';
 import {getLocale, getMessages} from 'next-intl/server';
 import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
 
 const font = Raleway({ subsets: ['latin'] })
 
@@ -79,6 +80,7 @@ export default async function RootLayout({
             {children}
           </SystemProvider>
         </NextIntlClientProvider>
+        <Toaster />
       </body>
     </html>
   );

@@ -118,5 +118,12 @@
     "termsOfService": "Termos de Serviço",
     "and": "e",
     "privacyPolicy": "Política de Privacidade"
+  },
+  "errors": {
+    "emailAlreadyRegistered": "Uh oh! E-mail já cadastrado.",
+    "tryAnotherEmail": "Por favor, tente novamente com outro e-mail.",
+    "somethingWentWrong": "Uh oh! Algo deu errado.",
+    "pleaseTryAgain": "Por favor, tente novamente.",
+    "invalidEmailOrPassword": "E-mail ou senha inválidos."
   }
 }

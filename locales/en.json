@@ -118,5 +118,12 @@
     "termsOfService": "Terms of Service",
     "and": "and",
     "privacyPolicy": "Privacy Policy"
+  },
+  "errors": {
+    "emailAlreadyRegistered": "Uh oh! Email already registered.",
+    "tryAnotherEmail": "Please try again with another email.",
+    "somethingWentWrong": "Uh oh! Something went wrong.",
+    "pleaseTryAgain": "Please try again.",
+    "invalidEmailOrPassword": "Invalid email or password."
   }
 }
