@@ -73,7 +73,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body
-        className={`${font.className} antialiased dark:bg-slate-950`}
+        className={`${font.className} antialiased dark:bg-zinc-900`}
       >
         <NextIntlClientProvider messages={messages}>
           <SystemProvider>

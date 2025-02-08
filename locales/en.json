@@ -46,6 +46,57 @@
         "description": "Set goals and track your progress with detailed notes and achievements."
       }
     },
+    "pricing": {
+      "title": "Choose Your Study Plan",
+      "description": "Select the plan that best fits your study needs and goals",
+      "plans": {
+        "freemium": {
+          "title": "Freemium",
+          "description": "Great for casual learners",
+          "price": "$0",
+          "price_note": "/ forever",
+          "features": [
+            "Basic study analysis",
+            "Limited book library access",
+            "Create up to 50 flashcards",
+            "100MB file storage"
+          ],
+          "button": "Get Started"
+        },
+        "token_based": {
+          "title": "Token-based",
+          "badge": "Popular",
+          "description": "Pay as you go",
+          "price": "$5",
+          "price_note": "/100 tokens",
+          "features": [
+            "All Freemium features",
+            "Advanced study analysis (5 tokens)",
+            "Full book library access (2 tokens/book)",
+            "PDF summarization (10 tokens/PDF)",
+            "1GB file storage"
+          ],
+          "button": "Buy Tokens"
+        },
+        "subscription": {
+          "title": "Monthly Subscription",
+          "badge": "Best Value",
+          "description": "For serious students",
+          "price": "$14.99",
+          "price_note": "/month",
+          "features": [
+            "All Token-based features",
+            "Unlimited study analysis",
+            "Unlimited flashcards",
+            "Advanced calendar with sync",
+            "Multi-task timer",
+            "10GB file storage",
+            "Priority support"
+          ],
+          "button": "Subscribe Now"
+        }
+      }
+    },
     "faq": {
       "title": "Frequently Asked Questions (FAQ)",
       "description": "Questions that can help you better understand our platform.",

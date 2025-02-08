@@ -46,6 +46,57 @@
         "description": "Defina metas e acompanhe seu progresso com notas detalhadas e conquistas."
       }
     },
+    "pricing": {
+      "title": "Escolha Seu Plano de Estudos",
+      "description": "Selecione o plano que melhor se adapta às suas necessidades e objetivos de estudo",
+      "plans": {
+        "freemium": {
+          "title": "Gratuito",
+          "description": "Ótimo para estudantes casuais",
+          "price": "$0",
+          "price_note": "/ para sempre",
+          "features": [
+            "Análise básica de estudo",
+            "Acesso limitado à biblioteca de livros",
+            "Criação de até 50 flashcards",
+            "100MB de armazenamento de arquivos"
+          ],
+          "button": "Começar"
+        },
+        "token_based": {
+          "title": "Baseado em Tokens",
+          "badge": "Popular",
+          "description": "Pague conforme o uso",
+          "price": "$4,99",
+          "price_note": "/100 tokens",
+          "features": [
+            "Todos os recursos do plano Gratuito",
+            "Análise avançada de estudo (5 tokens)",
+            "Acesso completo à biblioteca de livros (2 tokens/livro)",
+            "Resumo de PDFs (10 tokens/PDF)",
+            "1GB de armazenamento de arquivos"
+          ],
+          "button": "Comprar Tokens"
+        },
+        "subscription": {
+          "title": "Assinatura Mensal",
+          "badge": "Melhor Custo-Benefício",
+          "description": "Para estudantes dedicados",
+          "price": "$ 14,99",
+          "price_note": "/mês",
+          "features": [
+            "Todos os recursos do plano Baseado em Tokens",
+            "Análise de estudo ilimitada",
+            "Flashcards ilimitados",
+            "Calendário avançado com sincronização",
+            "Temporizador multitarefa",
+            "10GB de armazenamento de arquivos",
+            "Suporte prioritário"
+          ],
+          "button": "Assinar Agora"
+        }
+      }
+    },
     "faq": {
       "title": "Perguntas Frequentes (FAQ)",
       "description": "Perguntas que podem ajudá-lo a entender melhor nossa plataforma.",

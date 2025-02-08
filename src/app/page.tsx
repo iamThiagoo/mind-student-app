@@ -9,8 +9,8 @@ import { LoginDialog } from "@/components/app/landing-page/auth/dialog/login-dia
 import { RegisterDialog } from "@/components/app/landing-page/auth/dialog/register-dialog";
 import { LanguageSelector } from "@/components/common/language-selector/language-selector";
 import { useTranslations } from "next-intl";
-import { FAQ } from "@/components/app/landing-page/faq/faq";
-import StudentAnimation from "@/components/app/landing-page/animation/student";
+import { FAQ } from "@/components/app/landing-page/sections/faq/faq";
+import StudentAnimation from "@/components/app/landing-page/sections/animation/student";
 import { FcGraduationCap } from "react-icons/fc";
 import { useEffect, useState } from "react";
 import { MenuDropdown } from "@/components/app/landing-page/menu-dropdown/menu-dropdown";
@@ -19,8 +19,9 @@ import { FaUserGraduate } from "react-icons/fa";
 import { createClient } from "@/lib/supabase/client";
 import { User } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
-import Footer from "@/components/app/landing-page/footer/footer";
-import Features from "@/components/app/landing-page/features/features";
+import Footer from "@/components/app/landing-page/sections/footer/footer";
+import Features from "@/components/app/landing-page/sections/features/features";
+import Pricing from "@/components/app/landing-page/sections/pricing/pricing";
 
 export default function Page() {
 
@@ -148,6 +149,12 @@ export default function Page() {
         <section className="w-full py-12 md:py-24 lg:pb-32 lg:pt-28 flex justify-center">
           <div className="container px-5 md:px-6">
             <Features />
+          </div>
+        </section>
+
+        <section className="w-full py-12 md:py-24 lg:pb-32 lg:pt-0 flex justify-center">
+          <div className="container px-5">
+            <Pricing />
           </div>
         </section>
 

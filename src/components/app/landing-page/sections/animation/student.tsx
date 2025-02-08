@@ -1,4 +1,4 @@
-import animationData from "../../../../../public/lottie-files/student.json";
+import animationData from "../../../../../../public/lottie-files/student.json";
 import Lottie from "lottie-react";
 
 const StudentAnimation = () => {

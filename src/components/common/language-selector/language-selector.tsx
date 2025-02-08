@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useTransition } from "react"
+import { useState, useEffect, useTransition } from "react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { Check, ChevronDown } from "lucide-react"
@@ -18,6 +18,11 @@ export function LanguageSelector({ items } : Props) {
     items.find((lang) => lang.value === locale) || items[0]
   );
   const [, startTransition] = useTransition();
+
+  useEffect(() => {
+    const selectedLanguage = items.find((lang) => lang.value === locale);
+    if (selectedLanguage) setLanguage(selectedLanguage);
+  }, [locale, items]);
 
   function onChange(value: string) {
     const selectedLanguage = items.find((lang) => lang.value === value);
