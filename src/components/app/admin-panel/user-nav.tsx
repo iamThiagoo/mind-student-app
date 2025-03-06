@@ -32,16 +32,19 @@ export function UserNav() {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const {data}: any = await supabase.auth.getUserIdentities();
-      const fullname = data?.identities?.[0]?.identity_data?.first_name + " " + data?.identities?.[0]?.identity_data?.last_name;
+      const { data }: any = await supabase.auth.getUserIdentities();
+      const fullname =
+        data?.identities?.[0]?.identity_data?.first_name +
+        " " +
+        data?.identities?.[0]?.identity_data?.last_name;
       const email = data?.identities?.[0]?.identity_data?.email;
-      
+  
       setUser(data);
       setFullName(fullname);
       setEmail(email);
     };
     fetchUser();
-  }, []);
+  }, [supabase]);
 
   function getInitialsFromName(fullname: string) {
     if (!fullname) return "";

@@ -16,7 +16,7 @@ export async function middleware(request: NextRequest) {
 
   if (!cookieLocale) {
     const acceptLanguage = request.headers.get("accept-language");
-    let userLanguage = acceptLanguage?.split(",")[0].toLowerCase();
+    const userLanguage = acceptLanguage?.split(",")[0].toLowerCase();
 
     const isValidLanguage = languages.some((lang) => lang.value === userLanguage);
     const locale = isValidLanguage ? userLanguage : DEFAULT_LOCALE;
