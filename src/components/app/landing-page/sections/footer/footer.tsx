@@ -1,5 +1,5 @@
-import { PrivacyDialog } from "@/components/common/terms-privacy/privacy-dialog";
-import { TermsDialog } from "@/components/common/terms-privacy/terms-dialog";
+import { PrivacyDialog } from "@/components/app/shared/terms-privacy/privacy-dialog";
+import { TermsDialog } from "@/components/app/shared/terms-privacy/terms-dialog";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";

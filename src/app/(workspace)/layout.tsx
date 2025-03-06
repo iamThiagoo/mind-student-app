@@ -1,5 +1,5 @@
-import AdminPanelLayout from "@/components/admin-panel/admin-panel-layout";
-import { ThemeProvider } from "@/components/providers/theme-provider";
+import AdminPanelLayout from "@/components/app/admin-panel/admin-panel-layout";
+import { ThemeProvider } from "@/components/app/shared/theme-toggle/providers/theme-provider";
 
 export default function WorkspaceLayout({
   children,

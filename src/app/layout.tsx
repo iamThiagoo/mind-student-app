@@ -71,7 +71,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body
         className={`${font.className} antialiased dark:bg-zinc-900`}
       >

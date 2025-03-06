@@ -6,8 +6,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { LoginDialog } from "../auth/dialog/login-dialog";
 import { RegisterDialog } from "../auth/dialog/register-dialog";
-import { LanguageSelector } from "../../../common/language-selector/language-selector";
-import { ThemeToggle } from "../../../common/theme-toggle/theme-toggle";
+import { LanguageSelector } from "../../shared/language-selector/language-selector";
+import { ThemeToggle } from "../../shared/theme-toggle/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
