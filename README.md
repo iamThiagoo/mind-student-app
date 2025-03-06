@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MindStudent
 
-## Getting Started
+MindStudent é uma micro-SaaS freemium voltada para o público estudantil, oferecendo ferramentas avançadas para aprimorar e organizar seus estudos em um só lugar. O projeto disponibiliza um modelo gratuito e planos pagos via tokens ou assinatura mensal para funcionalidades premium, como o uso de IA.
 
-First, run the development server:
+<img src="./public/preview.gif" />
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Funcionalidades
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 🔍 Organização de Estudos: Gerencie suas tarefas, anotações e cronogramas em um único lugar.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 🧪 Ferramentas de Aprendizado: Flashcards, resumos automáticos e mais.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 🤖 Inteligência Artificial: Recursos avançados para otimizar seus estudos (disponível no plano premium).
 
-## Learn More
+- 🔑 Sistema Freemium: Acesse funcionalidades básicas gratuitamente e desbloqueie recursos premium com tokens ou assinatura mensal.
 
-To learn more about Next.js, take a look at the following resources:
+## 💪 Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 🛠 Next.js - Framework React para aplicações web modernas.
+- 🎨 TailwindCSS - Estilização rápida e responsiva.
+- 🏢 Shadcn UI - Componentes acessíveis e customizáveis.
+- 📚 Supabase - Banco de dados e autenticação escaláveis.
+- 💸 Stripe - Pagamentos seguros via tokens ou plano mensal.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- 🛠 Docker - Infraestrutura containerizada para melhor escalabilidade.
 
-## Deploy on Vercel
+## 🛠️ Configuração
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Clone o repositório:
+    - ``git clone https://github.com/seu-usuario/mindstudent.git``
+    - ``cd mindstudent``
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Instale as dependências:
+    - ``npm install``
+
+- Configure as variáveis de ambiente (.env):
+    - ``NEXT_PUBLIC_APP_URL``
+    - ``NEXT_PUBLIC_SUPABASE_URL``
+    - ``NEXT_PUBLIC_SUPABASE_ANON_KEY``
+
+- Execute o projeto localmente:
+    - ``npm run dev``
+
+## 👥 Contribuição
+
+Fique à vontade para abrir issues e pull requests para melhorias!
+
+## 🎉 Licença
+
+Este projeto está licenciado sob a MIT License.
