@@ -10,7 +10,8 @@
         "maximizeEvolve": "Maximize e Evolua..."
       },
       "description": "Transforme sua jornada de aprendizado com ferramentas de estudo poderosas e acompanhamento de produtividade. Seu caminho para a excelência acadêmica começa aqui.",
-      "startJorney": "Inicie sua jornada agora"
+      "startJorney": "Inicie sua jornada agora",
+      "accessWorspace": "Acessar Workspace"
     },
     "features": {
       "studyAnalysis": {
@@ -169,6 +170,26 @@
     "termsOfService": "Termos de Serviço",
     "and": "e",
     "privacyPolicy": "Política de Privacidade"
+  },
+  "menu": {
+    "workspace": "Área de Trabalho",
+    "pomodoro": "Pomodoro",
+    "annotations": "Anotações",
+    "flashcards": "Flashcards",
+    "virtualLibrary": "Biblioteca Virtual",
+    "calendar": "Calendário",
+    "upload": "Upload de Arquivos",
+    "pdfSummary": "Resumo de Arquivo",
+    "textChat": "Chat con Texto",
+    "myStatistics": "Minhas Estatísticas",
+    "myAccount": "Minha Conta",
+    "signOut": "Sair da Conta",
+    "switchTheme": "Mudar tema",
+    "profile": "Perfil",
+    "essayEvaluator": "Avaliador de Redação",
+    "myFiles": "Meus Arquivos",
+    "settings": "Configurações",
+    "home": "Principal"
   },
   "errors": {
     "emailAlreadyRegistered": "Uh oh! E-mail já cadastrado.",

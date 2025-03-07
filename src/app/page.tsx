@@ -44,6 +44,10 @@ export default function Page() {
   }, [supabase.auth]);
 
   const toggleRegisterDialog = () => {
+    if (user) {
+      redirect("/workspace")
+    }
+
     setIsRegisterOpen(!isRegisterOpen);
   };
 
@@ -92,7 +96,7 @@ export default function Page() {
           { user !== null ? (
             <div className="flex">
               <Button onClick={() => redirect('/workspace')} className="dark:border dark:border-gray-400 dark:text-white dark:bg-zinc-900 dark:hover:bg-zinc-800 select-none py-10 md:py-5 hover:underline rounded-full font-bold !text-lg !px-10">
-                Acessar Workspace
+                { t("main.accessWorspace") }
                 <TiChevronRight />
               </Button>
             </div>

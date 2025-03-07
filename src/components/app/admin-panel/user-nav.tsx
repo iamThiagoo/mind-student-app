@@ -23,12 +23,18 @@ import {
 import { createClient } from "@/lib/supabase/client";
 import { useEffect, useState } from "react";
 import { User as SupabaseUser } from "@supabase/supabase-js";
+import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
+import { toast } from "@/hooks/use-toast";
 
 export function UserNav() {
   const [user, setUser] = useState<SupabaseUser | null>(null);
   const [fullName, setFullName] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
+
   const supabase = createClient();
+  const t = useTranslations();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -45,6 +51,22 @@ export function UserNav() {
     };
     fetchUser();
   }, [supabase]);
+
+  async function onSignOut () {
+    try {
+      const { error } = await supabase.auth.signOut()
+      if (!!error) throw error
+      router.push("/");
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: t("errors.somethingWentWrong"),
+        description: t("errors.pleaseTryAgain"),
+      })
+    } finally {
+      return;
+    }
+  }
 
   function getInitialsFromName(fullname: string) {
     if (!fullname) return "";
@@ -69,7 +91,7 @@ export function UserNav() {
               </Button>
             </DropdownMenuTrigger>
           </TooltipTrigger>
-          <TooltipContent side="bottom">Profile</TooltipContent>
+          <TooltipContent side="bottom">{ t("menu.profile") }</TooltipContent>
         </Tooltip>
       </TooltipProvider>
 
@@ -87,20 +109,20 @@ export function UserNav() {
           <DropdownMenuItem className="hover:cursor-pointer" asChild>
             <Link href="/workspace" className="flex items-center">
               <LayoutGrid className="w-4 h-4 mr-3 text-muted-foreground" />
-              Workspace
+              { t("menu.workspace") }
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem className="hover:cursor-pointer" asChild>
             <Link href="/account" className="flex items-center">
               <User className="w-4 h-4 mr-3 text-muted-foreground" />
-              Account
+              { t("menu.myAccount") }
             </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="hover:cursor-pointer" onClick={() => {}}>
+        <DropdownMenuItem className="hover:cursor-pointer" onClick={() => {onSignOut()}}>
           <LogOut className="w-4 h-4 mr-3 text-muted-foreground" />
-          Sign out
+          { t("menu.signOut") }
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { useSidebar } from "@/hooks/use-sidebar";
 import { useStore } from "@/hooks/use-store";
 import { cn } from "@/lib/utils";
-import { PanelsTopLeft } from "lucide-react";
 import Link from "next/link";
 import { FcGraduationCap } from "react-icons/fc";
 
@@ -35,7 +34,7 @@ export function Sidebar() {
           variant="link"
           asChild
         >
-          <Link href="/workspace" className="flex items-center gap-x-1">
+          <Link href="/" className="flex items-center gap-x-1">
             <FcGraduationCap className="!size-8 mr-2" />
             <h1
               className={cn(

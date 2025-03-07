@@ -5,7 +5,7 @@ import { Ellipsis, LogOut } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
-import { getMenuList } from "@/lib/menu-list";
+import { useMenuList } from "@/hooks/use-menu-list";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { CollapseMenuButton } from "@/components/app/admin-panel/collapse-menu-button";
@@ -15,6 +15,10 @@ import {
   TooltipContent,
   TooltipProvider
 } from "@/components/ui/tooltip";
+import { createClient } from "@/lib/supabase/client";
+import { toast } from "@/hooks/use-toast";
+import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 
 interface MenuProps {
   isOpen: boolean | undefined;
@@ -22,7 +26,27 @@ interface MenuProps {
 
 export function Menu({ isOpen }: MenuProps) {
   const pathname = usePathname();
-  const menuList = getMenuList(pathname);
+  const menuList = useMenuList(pathname);
+
+  const t = useTranslations();
+  const router = useRouter();
+  const supabase = createClient();
+  
+  async function onSignOut () {
+    try {
+      const { error } = await supabase.auth.signOut()
+      if (!!error) throw error
+      router.push("/");
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: t("errors.somethingWentWrong"),
+        description: t("errors.pleaseTryAgain"),
+      })
+    } finally {
+      return;
+    }
+  }
 
   return (
     <ScrollArea className="[&>div>div[style]]:!block">
@@ -118,7 +142,7 @@ export function Menu({ isOpen }: MenuProps) {
               <Tooltip delayDuration={100}>
                 <TooltipTrigger asChild>
                   <Button
-                    onClick={() => {}}
+                    onClick={() => {onSignOut()}}
                     variant="outline"
                     className="w-full justify-center h-10 mt-5"
                   >
@@ -131,12 +155,12 @@ export function Menu({ isOpen }: MenuProps) {
                         isOpen === false ? "opacity-0 hidden" : "opacity-100"
                       )}
                     >
-                      Sign out
+                      { t("menu.signOut") }
                     </p>
                   </Button>
                 </TooltipTrigger>
                 {isOpen === false && (
-                  <TooltipContent side="right">Sign out</TooltipContent>
+                  <TooltipContent side="right">{ t("menu.signOut") }</TooltipContent>
                 )}
               </Tooltip>
             </TooltipProvider>

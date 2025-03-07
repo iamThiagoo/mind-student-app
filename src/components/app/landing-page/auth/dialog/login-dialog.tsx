@@ -37,12 +37,8 @@ export function LoginDialog({
         password,
       });
 
-      if (!!error) {
-        throw error
-      }
-
+      if (!!error) throw error
       router.push("/workspace");
-      
     } catch (error: any) {
       if (error.code = "invalid_credentials") {
         toast({

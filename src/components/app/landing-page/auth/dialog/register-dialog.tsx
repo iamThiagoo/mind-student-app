@@ -57,12 +57,8 @@ export function RegisterDialog({
         }
       });
 
-      if (!!error) {
-        throw error
-      }
-
+      if (!!error) throw error
       router.push("/workspace");
-      
     } catch (error: any) {
       if (error.code === "user_already_exists") {
         toast({
