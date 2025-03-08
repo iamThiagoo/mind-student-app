@@ -92,7 +92,7 @@ export function useMenuList(pathname: string): Group[] {
           icon: UploadCloud
         },
         {
-          href: "/pdf-resume",
+          href: "/resume-files",
           label: t("pdfSummary"),
           icon: FileSearch
         }
@@ -101,11 +101,6 @@ export function useMenuList(pathname: string): Group[] {
     {
       groupLabel: t("settings"),
       menus: [
-        {
-          href: "/general-statics",
-          label: t("myStatistics"),
-          icon: GitGraph
-        },
         {
           href: "/account",
           label: t("myAccount"),
