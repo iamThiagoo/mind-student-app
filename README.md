@@ -1,4 +1,4 @@
-# MindStudent
+#  MindStudent: Organize, Aprimore e Domine seus Estudos com Facilidade.
 
 MindStudent é uma micro-SaaS freemium voltada para o público estudantil, oferecendo ferramentas avançadas para aprimorar e organizar seus estudos em um só lugar. O projeto disponibiliza um modelo gratuito e planos pagos via tokens ou assinatura mensal para funcionalidades premium, como o uso de IA.
 

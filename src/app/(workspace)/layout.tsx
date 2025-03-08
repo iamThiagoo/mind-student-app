@@ -1,16 +1,16 @@
-import AdminPanelLayout from "@/components/app/admin-panel/admin-panel-layout";
-import { ThemeProvider } from "@/components/app/shared/theme-toggle/providers/theme-provider";
+import PanelLayout from "@/components/app/panel/panel-layout";
+import { ThemeProvider } from "@/components/app/shared/mode-toggle/providers/theme-provider";
 
-export default function WorkspaceLayout({
+export default function AppLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <AdminPanelLayout>
+    <PanelLayout>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         {children}
       </ThemeProvider>
-    </AdminPanelLayout>
+    </PanelLayout>
   );
 }

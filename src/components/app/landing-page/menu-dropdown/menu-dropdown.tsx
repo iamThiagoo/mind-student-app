@@ -4,19 +4,15 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LoginDialog } from "../auth/dialog/login-dialog";
-import { RegisterDialog } from "../auth/dialog/register-dialog";
+import { LoginDialog } from "../auth-dialog/login-dialog";
+import { RegisterDialog } from "../auth-dialog/register-dialog";
 import { LanguageSelector } from "../../shared/language-selector/language-selector";
-import { ThemeToggle } from "../../shared/theme-toggle/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { ModeToggle } from "../../shared/mode-toggle/mode-toggle";
 
-type Props = {
-  languages: Array<{ value: string; label: string }>;
-};
-
-export const MenuDropdown = ({ languages }: Props) => {
+export const MenuDropdown = () => {
 
   const t = useTranslations("homepage");
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
@@ -64,8 +60,8 @@ export const MenuDropdown = ({ languages }: Props) => {
             </Button>
           </div>
           <div className="flex justify-between items-center">
-            <LanguageSelector items={languages} />
-            <ThemeToggle />
+            <LanguageSelector />
+            <ModeToggle />
           </div>
         </DropdownMenuContent>
       </DropdownMenu>

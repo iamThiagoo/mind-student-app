@@ -11,7 +11,6 @@ import {
   FileBadge2,
   Hourglass,
   CalendarCheck,
-  BotMessageSquare,
   FileSearch
 } from "lucide-react";
 
@@ -68,7 +67,7 @@ export function useMenuList(pathname: string): Group[] {
           icon: ClipboardSignature
         },
         {
-          href: "/virtual-library",
+          href: "/library",
           label: t("virtualLibrary"),
           icon: Book
         },
@@ -78,7 +77,7 @@ export function useMenuList(pathname: string): Group[] {
           icon: CalendarCheck
         },
         {
-          href: "/calendar",
+          href: "/text-review",
           label: t("essayEvaluator"),
           icon: FileBadge2
         },

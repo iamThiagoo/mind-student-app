@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
-import { SystemProvider } from "@/contexts/system";
 import {NextIntlClientProvider} from 'next-intl';
 import {getLocale, getMessages} from 'next-intl/server';
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { ThemeProvider } from "@/components/app/shared/mode-toggle/providers/theme-provider";
 
 const font = Raleway({ subsets: ['latin'] })
 
@@ -76,9 +76,9 @@ export default async function RootLayout({
         className={`${font.className} antialiased dark:bg-zinc-900`}
       >
         <NextIntlClientProvider messages={messages}>
-          <SystemProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
-          </SystemProvider>
+          </ThemeProvider>
         </NextIntlClientProvider>
         <Toaster />
       </body>

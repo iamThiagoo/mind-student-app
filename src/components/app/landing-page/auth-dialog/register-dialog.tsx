@@ -1,18 +1,19 @@
+import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { DialogProps } from "@/components/@types/dialog";
+import { useState } from "react";
+import { PrivacyDialog } from "@/components/app/shared/terms-privacy/privacy-dialog";
+import { TermsDialog } from "@/components/app/shared/terms-privacy/terms-dialog";
 import { FaGoogle } from "react-icons/fa";
-import { Button } from "@/components/ui/button";
 import { FiGithub } from "react-icons/fi";
 import { useTranslations } from "next-intl";
 import { ImSpinner2 } from "react-icons/im";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation";
-import { createClient } from "@/lib/supabase/client";
 
-export function LoginDialog({
+export function RegisterDialog({
   isOpen,
   onOpenChange,
   onChildEvent,
@@ -22,29 +23,48 @@ export function LoginDialog({
   const { toast } = useToast();
   const router = useRouter();
 
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [fullname, setFullname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const toggleTermsDialog = () => {
+    setIsTermsOpen(!isTermsOpen);
+  };
+
+  const togglePrivacyDialog = () => {
+    setIsPrivacyOpen(!isPrivacyOpen);
+  };
 
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
     setIsLoading(true);
 
     try {
-      const supabase = await createClient()
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          email, 
+          password, 
+          fullname 
+        }),
       });
-
-      if (!!error) throw error
+  
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.code);
+  
       router.push("/workspace");
     } catch (error: any) {
-      if (error.code = "invalid_credentials") {
+      if (error.message === "user_already_exists") {
         toast({
           variant: "destructive",
-          title: t("errors.invalidEmailOrPassword"),
-          description: t("errors.pleaseTryAgain"),
+          title: t("errors.emailAlreadyRegistered"),
+          description: t("errors.tryAnotherEmail"),
         })
       } else {
         toast({
@@ -61,37 +81,56 @@ export function LoginDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px] pb-8">
+      <DialogContent className="sm:max-w-[425px]">
         <DialogTitle></DialogTitle>
         <div className="grid gap-5">
-          <h2 className="text-center font-bold text-2xl">{t("login.title")}</h2>
+          <h2 className="text-center font-bold text-2xl">
+            {t("signUp.title")}
+          </h2>
           <p className="text-medium text-sm mt-0 text-center text-gray-700">
-            {t("login.description")}
+            {t("signUp.description")}
           </p>
           <form onSubmit={onSubmit}>
             <div className="grid gap-4">
+              <div className="grid gap-1">
+                <Label className="sr-only" htmlFor="fullname">
+                  {t("signUp.fullName")}
+                </Label>
+                <Input
+                  id="fullname"
+                  placeholder={t("signUp.fullName")}
+                  type="text"
+                  autoCapitalize="none"
+                  autoComplete="name"
+                  autoCorrect="off"
+                  value={fullname}
+                  onChange={(e) => setFullname(e.target.value)}
+                  disabled={isLoading}
+                />
+              </div>
               <div className="grid gap-1">
                 <Label className="sr-only" htmlFor="email">
                   Email
                 </Label>
                 <Input
                   id="email"
-                  placeholder="email@exemplo.com"
+                  placeholder="Email"
                   type="email"
                   autoCapitalize="none"
                   autoComplete="email"
                   autoCorrect="off"
-                  disabled={isLoading}
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  disabled={isLoading}
                 />
               </div>
               <div className="grid gap-1">
                 <Label className="sr-only" htmlFor="password">
-                  {t("login.password")}
+                  {t("signUp.password")}
                 </Label>
                 <Input
                   id="password"
-                  placeholder={t("login.password")}
+                  placeholder={t("signUp.password")}
                   type="password"
                   autoCapitalize="none"
                   autoComplete="current-password"
@@ -104,7 +143,7 @@ export function LoginDialog({
                 {isLoading && (
                   <ImSpinner2 className="mr-2 h-4 w-4 animate-spin" />
                 )}
-                {t("login.signIn")}
+                {t("signUp.createAccount")}
               </Button>
             </div>
           </form>
@@ -112,10 +151,10 @@ export function LoginDialog({
 
         <Button
           variant={"ghost"}
-          onClick={() => onChildEvent && onChildEvent("register")}
           className="py-5 border border-gray-300"
+          onClick={() => onChildEvent && onChildEvent("login")}
         >
-          {t("login.signUp")}
+          {t("signUp.alreadyHaveAccount")}
         </Button>
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
@@ -123,7 +162,7 @@ export function LoginDialog({
           </div>
           <div className="relative flex justify-center text-xs uppercase">
             <span className="bg-background px-2 text-muted-foreground">
-              {t("login.orContinueWith")}
+              {t("signUp.orContinueWith")}
             </span>
           </div>
         </div>
@@ -137,6 +176,28 @@ export function LoginDialog({
             GitHub
           </Button>
         </div>
+        <p className="text-sm text-center mx-auto max-w-xs text-gray-600">
+          {t("terms.agreement")}
+          <button
+            onClick={toggleTermsDialog}
+            className="underline ml-1 hover:opacity-80"
+          >
+            {t("terms.termsOfService")}
+          </button>{" "}
+          {t("terms.and")}{" "}
+          <button
+            onClick={togglePrivacyDialog}
+            className="underline hover:opacity-80"
+          >
+            {t("terms.privacyPolicy")}.
+          </button>
+        </p>
+
+        <PrivacyDialog
+          isOpen={isPrivacyOpen}
+          onOpenChange={togglePrivacyDialog}
+        />
+        <TermsDialog isOpen={isTermsOpen} onOpenChange={toggleTermsDialog} />
       </DialogContent>
     </Dialog>
   );

@@ -1,14 +1,9 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { updateSession } from './lib/supabase/middleware';
 import { setUserLocale } from './services/locale';
+import { DEFAULT_LOCALE, languages } from './config/languages';
 
 const COOKIE_NAME = 'locale';
-const DEFAULT_LOCALE = 'en';
-const languages = [
-  { value: "pt-br", label: "Português" },
-  { value: "en", label: "English" },
-  { value: "es", label: "Spanish" },
-];
 
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next();

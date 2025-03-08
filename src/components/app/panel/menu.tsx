@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { useMenuList } from "@/hooks/use-menu-list";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { CollapseMenuButton } from "@/components/app/admin-panel/collapse-menu-button";
+import { CollapseMenuButton } from "@/components/app/panel/collapse-menu-button";
 import {
   Tooltip,
   TooltipTrigger,

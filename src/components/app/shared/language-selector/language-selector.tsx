@@ -7,25 +7,22 @@ import { Check, ChevronDown } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { useLocale } from "next-intl"
 import { setUserLocale } from "@/services/locale"
+import { languages } from "@/config/languages"
 
-type Props = {
-  items: Array<{value: string; label: string}>;
-};
-
-export function LanguageSelector({ items } : Props) {
+export function LanguageSelector() {
   const locale = useLocale();
   const [language, setLanguage] = useState(() =>
-    items.find((lang) => lang.value === locale) || items[0]
+    languages.find((lang) => lang.value === locale) || languages[0]
   );
   const [, startTransition] = useTransition();
 
   useEffect(() => {
-    const selectedLanguage = items.find((lang) => lang.value === locale);
+    const selectedLanguage = languages.find((lang) => lang.value === locale);
     if (selectedLanguage) setLanguage(selectedLanguage);
-  }, [locale, items]);
+  }, [locale, languages]);
 
   function onChange(value: string) {
-    const selectedLanguage = items.find((lang) => lang.value === value);
+    const selectedLanguage = languages.find((lang) => lang.value === value);
     if (selectedLanguage) {
       setLanguage(selectedLanguage);
       startTransition(() => {
@@ -43,7 +40,7 @@ export function LanguageSelector({ items } : Props) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="dark:border dark:bg-slate-900 w-20" style={{ minWidth: "70px" }}>
-        {items.map((lang) => (
+        {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.value}
             onSelect={() => onChange(lang.value)}

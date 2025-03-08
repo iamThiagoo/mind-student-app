@@ -1,11 +1,11 @@
 "use client";
 
-import { Sidebar } from "@/components/app/admin-panel/sidebar";
+import { Sidebar } from "@/components/app/panel/sidebar";
 import { useSidebar } from "@/hooks/use-sidebar";
 import { useStore } from "@/hooks/use-store";
 import { cn } from "@/lib/utils";
 
-export default function AdminPanelLayout({
+export default function PanelLayout({
   children
 }: {
   children: React.ReactNode;

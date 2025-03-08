@@ -4,9 +4,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { WordRotate } from "@/components/ui/word-rotate";
-import { ThemeToggle } from "@/components/app/shared/theme-toggle/theme-toggle";
-import { LoginDialog } from "@/components/app/landing-page/auth/dialog/login-dialog";
-import { RegisterDialog } from "@/components/app/landing-page/auth/dialog/register-dialog";
+import { LoginDialog } from "@/components/app/landing-page/auth-dialog/login-dialog";
+import { RegisterDialog } from "@/components/app/landing-page/auth-dialog/register-dialog";
 import { LanguageSelector } from "@/components/app/shared/language-selector/language-selector";
 import { useTranslations } from "next-intl";
 import { FAQ } from "@/components/app/landing-page/sections/faq/faq";
@@ -22,9 +21,9 @@ import { redirect } from "next/navigation";
 import Footer from "@/components/app/landing-page/sections/footer/footer";
 import Features from "@/components/app/landing-page/sections/features/features";
 import Pricing from "@/components/app/landing-page/sections/pricing/pricing";
+import { ModeToggle } from "@/components/app/shared/mode-toggle/mode-toggle";
 
 export default function Page() {
-
   const supabase = createClient();
   const t = useTranslations("homepage");
 
@@ -44,10 +43,7 @@ export default function Page() {
   }, [supabase.auth]);
 
   const toggleRegisterDialog = () => {
-    if (user) {
-      redirect("/workspace")
-    }
-
+    if (user) redirect("/workspace")
     setIsRegisterOpen(!isRegisterOpen);
   };
 
@@ -67,12 +63,6 @@ export default function Page() {
     }
   }
 
-  const languages = [
-    { value: "pt-br", label: "Português" },
-    { value: "en", label: "English" },
-    { value: "es", label: "Spanish" },
-  ];
-
   return (
     <div className="flex min-h-screen flex-col pt-2 pb-5">
 
@@ -87,11 +77,11 @@ export default function Page() {
               <span className="mt-1">{t("appName")}</span>
             </span>
           </Link>
-          <MenuDropdown languages={languages} />
+          <MenuDropdown />
         </div>
         <div className="hidden md:flex gap-x-3 sm:gap-x-5 justify-center items-center">
-          <LanguageSelector items={languages} />
-          <ThemeToggle />
+          <LanguageSelector />
+          <ModeToggle />
 
           { user !== null ? (
             <div className="flex">
