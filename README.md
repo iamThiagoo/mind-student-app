@@ -1,50 +1,48 @@
-#  MindStudent: Organize, Aprimore e Domine seus Estudos com Facilidade.
+#  MindStudent: Organize, Enhance, and Master Your Studies with Ease
 
-MindStudent é uma micro-SaaS freemium voltada para o público estudantil, oferecendo ferramentas avançadas para aprimorar e organizar seus estudos em um só lugar. O projeto disponibiliza um modelo gratuito e planos pagos via tokens ou assinatura mensal para funcionalidades premium, como o uso de IA.
+MindStudent is a freemium micro-SaaS aimed at students, providing advanced tools to improve and organize your studies in one place. The project offers a free model and paid plans through tokens for premium features, such as AI usage.
 
 <img src="./public/preview.gif" />
 
-## ✨ Funcionalidades
+## ✨ Features
 
-- 🔍 Organização de Estudos: Gerencie suas tarefas, anotações e cronogramas em um único lugar.
+- 🔍 Study Organization: Manage your tasks, notes, and schedules in one place.
 
-- 🧪 Ferramentas de Aprendizado: Flashcards, resumos automáticos e mais.
+- 🧪 Learning Tools: Flashcards, automatic summaries, and more.
 
-- 🤖 Inteligência Artificial: Recursos avançados para otimizar seus estudos (disponível no plano premium).
+- 🤖 Artificial Intelligence: Advanced features to optimize your studies (available in the premium plan).
 
-- 🔑 Sistema Freemium: Acesse funcionalidades básicas gratuitamente e desbloqueie recursos premium com tokens ou assinatura mensal.
+- 🔑 Freemium System: Access basic features for free and unlock premium features with tokens.
 
 ## 💪 Tech Stack
 
-- 🛠 Next.js - Framework React para aplicações web modernas.
-- 🎨 TailwindCSS - Estilização rápida e responsiva.
-- 🏢 Shadcn UI - Componentes acessíveis e customizáveis.
-- 📚 Supabase - Banco de dados e autenticação escaláveis.
-- 💸 Stripe - Pagamentos seguros via tokens ou plano mensal.
+- Next.js with Shadcn UI
+- TailwindCSS
+- Supabase
+- Stripe
+- Docker
 
-- 🛠 Docker - Infraestrutura containerizada para melhor escalabilidade.
+## 🛠️ Setup
 
-## 🛠️ Configuração
-
-- Clone o repositório:
+- Clone the repository:
     - ``git clone https://github.com/seu-usuario/mindstudent.git``
     - ``cd mindstudent``
 
-- Instale as dependências:
+- Install dependencies:
     - ``npm install``
 
-- Configure as variáveis de ambiente (.env):
+- Configure environment variables (.env):
     - ``NEXT_PUBLIC_APP_URL``
     - ``NEXT_PUBLIC_SUPABASE_URL``
     - ``NEXT_PUBLIC_SUPABASE_ANON_KEY``
 
-- Execute o projeto localmente:
+- Run the project locally:
     - ``npm run dev``
 
 ## 👥 Contribuição
 
-Fique à vontade para abrir issues e pull requests para melhorias!
+Feel free to open issues and pull requests for improvements!
 
 ## 🎉 Licença
 
-Este projeto está licenciado sob a MIT License.
+This project is licensed under the MIT License.
